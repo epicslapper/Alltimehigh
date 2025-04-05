@@ -1,25 +1,30 @@
 import streamlit as st
 
-# 1. Page config MUST be first
-st.set_page_config(page_title="StockTracker ATH")
+# MUST be first command
+st.set_page_config(page_title="StockTracker ATH", layout="wide")
 
-# 2. Unified Password Check (works locally and in cloud)
+# ===== BULLETPROOF PASSWORD CHECK =====
 def check_password():
-    # Try Community Cloud secrets first
-    if hasattr(st, "secrets") and "PASSWORD" in st.secrets:
-        correct_password = st.secrets.PASSWORD
-    # Fallback for local development
-    else:
-        correct_password = "dev_password"  # Change this for local testing
+    # Try to get password from ALL possible sources
+    password = (
+        st.secrets.get("PASSWORD") or          # Streamlit Cloud
+        os.environ.get("ST_PASSWORD") or       # Environment variables
+        "dev_pass_123"                         # Local dev fallback (change this!)
+    )
     
-    password = st.text_input("Enter password:", type="password")
-    if password != correct_password:
+    # Show password input
+    input_pw = st.text_input("Enter App Password:", type="password")
+    
+    if not input_pw:
+        st.stop()  # Don't show error on first load
+    elif input_pw != password:
         st.error("Wrong password")
         st.stop()
     return True
 
 if not check_password():
     st.stop()
+# ===== END PASSWORD CHECK =====
 
 # 3. YOUR ORIGINAL APP CODE STARTS HERE...
 
