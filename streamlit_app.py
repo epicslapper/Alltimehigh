@@ -72,6 +72,11 @@ import yfinance as yf
 from datetime import datetime, timedelta
 import time
 
+
+import pip
+pip.main(["install", "plotly"])  # Force install
+
+
 # Hardcoded default tickers
 DEFAULT_TICKERS = [
     "SOL-USD", "HUT", "CLSK", "SHOP", "MSTR",
