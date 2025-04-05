@@ -2,35 +2,52 @@ import streamlit as st
 
 # MUST be the VERY FIRST Streamlit command
 st.set_page_config(page_title="Deep Value ATH Tracker", layout="wide")
+import streamlit as st
 
+# 1. Page config MUST be first
+st.set_page_config(page_title="Protected App")
+
+# 2. Password check
+if "PASSWORD" not in st.secrets:
+    st.error("Server error: Password not configured")
+    st.stop()
+
+password = st.text_input("Enter password:", type="password")
+if password != st.secrets.PASSWORD:
+    st.error("Wrong password")
+    st.stop()
 
 # ===== PASSWORD PROTECTION =====
-def check_password():
-    """Verify password from st.secrets with proper error handling."""
-    # Create empty container we can fill later
-    password_container = st.empty()
+# def check_password():
+#     """Verify password from st.secrets with proper error handling."""
+#     # Create empty container we can fill later
+#     password_container = st.empty()
+# 
+#     # Check if secrets are available
+#     if not hasattr(st, "secrets"):
+#         password_container.warning("Running in dev mode - password bypassed")
+#         return True
+# 
+#     if "PASSWORD" not in st.secrets:
+#         password_container.error("Password not configured in secrets.toml")
+#         st.stop()
+# 
+#     # Show password input
+#     password_input = password_container.text_input(
+#         "Enter Password:",
+#         type="password",
+#         key="pw_input"
+#     )
+#     # 
+# 
+# 
+#     if password_input != st.secrets["PASSWORD"]:
+#         if password_input:  # Only show error after first attempt
+#             password_container.error("Wrong password")
+#         st.stop()
+#     return True
 
-    # Check if secrets are available
-    if not hasattr(st, "secrets"):
-        password_container.warning("Running in dev mode - password bypassed")
-        return True
 
-    if "PASSWORD" not in st.secrets:
-        password_container.error("Password not configured in secrets.toml")
-        st.stop()
-
-    # Show password input
-    password_input = password_container.text_input(
-        "Enter Password:",
-        type="password",
-        key="pw_input"
-    )
-
-    if password_input != st.secrets["PASSWORD"]:
-        if password_input:  # Only show error after first attempt
-            password_container.error("Wrong password")
-        st.stop()
-    return True
 
 
 # Check password before proceeding
