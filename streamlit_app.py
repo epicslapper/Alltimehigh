@@ -61,6 +61,7 @@ if not check_password():
 
 
 
+st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
 
 # Clear the password UI after successful authentication
 # st.empty()
