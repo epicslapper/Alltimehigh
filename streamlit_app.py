@@ -62,7 +62,7 @@ if not check_password():
 
 
 st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
-
+st.success("GitHub Sync Test: Working! ✅")  # Permanent green box
 # Clear the password UI after successful authentication
 # st.empty()
 
