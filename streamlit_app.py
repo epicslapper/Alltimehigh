@@ -1,21 +1,27 @@
 import streamlit as st
 
-# MUST be the VERY FIRST Streamlit command
-st.set_page_config(page_title="Deep Value ATH Tracker", layout="wide")
-import streamlit as st
-
 # 1. Page config MUST be first
-st.set_page_config(page_title="Protected App")
+st.set_page_config(page_title="StockTracker ATH")
 
-# 2. Password check
-if "PASSWORD" not in st.secrets:
-    st.error("Server error: Password not configured")
+# 2. Unified Password Check (works locally and in cloud)
+def check_password():
+    # Try Community Cloud secrets first
+    if hasattr(st, "secrets") and "PASSWORD" in st.secrets:
+        correct_password = st.secrets.PASSWORD
+    # Fallback for local development
+    else:
+        correct_password = "dev_password"  # Change this for local testing
+    
+    password = st.text_input("Enter password:", type="password")
+    if password != correct_password:
+        st.error("Wrong password")
+        st.stop()
+    return True
+
+if not check_password():
     st.stop()
 
-password = st.text_input("Enter password:", type="password")
-if password != st.secrets.PASSWORD:
-    st.error("Wrong password")
-    st.stop()
+# 3. YOUR ORIGINAL APP CODE STARTS HERE...
 
 # ===== PASSWORD PROTECTION =====
 # def check_password():
