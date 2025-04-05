@@ -25,50 +25,8 @@ def check_password():
 
 if not check_password():
     st.stop()
-# ===== END PASSWORD CHECK =====
 
-# 3. YOUR ORIGINAL APP CODE STARTS HERE...
-
-# ===== PASSWORD PROTECTION =====
-# def check_password():
-#     """Verify password from st.secrets with proper error handling."""
-#     # Create empty container we can fill later
-#     password_container = st.empty()
-# 
-#     # Check if secrets are available
-#     if not hasattr(st, "secrets"):
-#         password_container.warning("Running in dev mode - password bypassed")
-#         return True
-# 
-#     if "PASSWORD" not in st.secrets:
-#         password_container.error("Password not configured in secrets.toml")
-#         st.stop()
-# 
-#     # Show password input
-#     password_input = password_container.text_input(
-#         "Enter Password:",
-#         type="password",
-#         key="pw_input"
-#     )
-#     # 
-# 
-# 
-#     if password_input != st.secrets["PASSWORD"]:
-#         if password_input:  # Only show error after first attempt
-#             password_container.error("Wrong password")
-#         st.stop()
-#     return True
-
-
-
-
-st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
-st.success("GitHub Sync Test: Working! ✅")  # Permanent green box
-st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
-st.success("GitHub Sync Test: Working test! ✅")  # Permanent green box
-
-# Clear the password UI after successful authentication
-# st.empty()
+st.empty()
 
 # ===== ORIGINAL IMPORTS =====
 import pandas as pd
