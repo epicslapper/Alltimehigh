@@ -13,6 +13,7 @@ def check_password():
     )
     
     # Show password input
+    # test backup function
     input_pw = st.text_input("Enter App Password:", type="password")
     
     if not input_pw:
@@ -63,6 +64,9 @@ if not check_password():
 
 st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
 st.success("GitHub Sync Test: Working! ✅")  # Permanent green box
+st.toast("🚀 Sync test successful! Hello from PyCharm!", icon="✔️")
+st.success("GitHub Sync Test: Working test! ✅")  # Permanent green box
+
 # Clear the password UI after successful authentication
 # st.empty()
 
