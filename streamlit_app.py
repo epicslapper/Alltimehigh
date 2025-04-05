@@ -56,12 +56,9 @@ if not check_password():
 
 
 
-# Check password before proceeding
-if not check_password():
-    st.stop()
 
 # Clear the password UI after successful authentication
-st.empty()
+# st.empty()
 
 # ===== ORIGINAL IMPORTS =====
 import pandas as pd
